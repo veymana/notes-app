@@ -1,0 +1,23 @@
+:host { display: block; }
+main { max-width: 42rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+h1 { font-size: 2rem; margin: 0 0 1.25rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.05rem; margin: 0; }
+label { display: grid; gap: 0.25rem; font-size: 0.875rem; color: var(--muted); }
+input, textarea { font: inherit; color: var(--ink); padding: 0.55rem 0.65rem; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.compose { display: grid; gap: 0.75rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+button { font: inherit; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 0.5rem 0.9rem; border-radius: 4px; justify-self: start; }
+.filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.25rem 0 0.5rem; }
+.filters button { background: transparent; color: var(--accent); padding: 0.25rem 0.7rem; }
+.filters button.on { background: var(--accent); color: #fff; }
+.notes { list-style: none; margin: 1rem 0 0; padding: 0; }
+.notes li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.notes p { margin: 0.4rem 0 0; white-space: pre-wrap; }
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.del { background: transparent; color: var(--muted); border-color: transparent; padding: 0.1rem 0.4rem; font-size: 0.85rem; }
+.del:hover { color: #a02323; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-top: 0.6rem; font-size: 0.8rem; color: var(--muted); }
+.tag { border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.55rem; color: var(--accent); }
+time { margin-left: auto; }
+.error { color: #a02323; margin: 1rem 0 0; }
+.empty { color: var(--muted); }

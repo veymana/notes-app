@@ -1,0 +1,51 @@
+<main>
+  <h1>Notes</h1>
+
+  <form class="compose" (submit)="$event.preventDefault(); add()">
+    <label>Title
+      <input [value]="title()" (input)="title.set(val($event))" maxlength="200" required />
+    </label>
+    <label>Note
+      <textarea rows="3" [value]="content()" (input)="content.set(val($event))"></textarea>
+    </label>
+    <label>Tags, separated by commas
+      <input [value]="tagText()" (input)="tagText.set(val($event))" placeholder="java, openshift" />
+    </label>
+    <button type="submit">Save note</button>
+  </form>
+
+  @if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  }
+
+  @if (tags().length) {
+    <nav class="filters" aria-label="Filter by tag">
+      <button type="button" [class.on]="activeTag() === null" (click)="filter(null)">All</button>
+      @for (t of tags(); track t) {
+        <button type="button" [class.on]="activeTag() === t" (click)="filter(t)">{{ t }}</button>
+      }
+    </nav>
+  }
+
+  <ul class="notes">
+    @for (n of notes(); track n.id) {
+      <li>
+        <div class="head">
+          <h2>{{ n.title }}</h2>
+          <button type="button" class="del" (click)="remove(n)" [attr.aria-label]="'Delete ' + n.title">Delete</button>
+        </div>
+        @if (n.content) {
+          <p>{{ n.content }}</p>
+        }
+        <div class="meta">
+          @for (t of n.tags; track t) {
+            <span class="tag">{{ t }}</span>
+          }
+          <time>{{ n.createdAt | date: 'MMM d, h:mm a' }}</time>
+        </div>
+      </li>
+    } @empty {
+      <li class="empty">No notes yet. Write one above and tag it so you can find it later.</li>
+    }
+  </ul>
+</main>

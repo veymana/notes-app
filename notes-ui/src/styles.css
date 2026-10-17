@@ -1,0 +1,2 @@
+:root { --ink: #14262b; --muted: #5d7076; --line: #d5dde0; --accent: #1d5c6e; }
+body { margin: 0; background: #f6f8f9; color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
