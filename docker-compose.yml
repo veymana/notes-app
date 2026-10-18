@@ -8,3 +8,8 @@ services:
       POSTGRES_PASSWORD: notes
     ports:
       - "5432:5432"
+    volumes:
+      - notes-db-data:/var/lib/postgresql/data
+
+volumes:
+  notes-db-data:
