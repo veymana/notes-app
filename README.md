@@ -22,6 +22,18 @@ Start Postgres (`docker compose up -d`), then run `NotesApiApplication`. The `de
 `application.properties` (shared), `application-dev.properties` (localhost DB) and `application-prod.properties` (OpenShift, reads env vars).
 To test the prod profile locally: `SPRING_PROFILES_ACTIVE=prod SPRING_DATASOURCE_URL=... SPRING_DATASOURCE_USERNAME=... SPRING_DATASOURCE_PASSWORD=... mvn spring-boot:run`.
 
+## GitHub Actions CI
+
+The workflow in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every push,
+pull request, and manual dispatch from the GitHub Actions tab. It runs two parallel jobs:
+
+- **Backend:** sets up Java 17 and runs `mvn --batch-mode --no-transfer-progress verify` in `backend/`.
+- **Frontend:** sets up Node.js 22, installs the locked dependencies with `npm ci`, and builds Angular for production in `notes-ui/`.
+
+Maven and npm dependencies are cached. No repository secrets are required.
+There are currently no checked-in tests; Maven will run tests when they are added.
+The workflow builds and verifies the code; OpenShift deployment uses the steps below.
+
 ## Deploy to OpenShift (Developer Sandbox or CRC)
 
 ```bash
